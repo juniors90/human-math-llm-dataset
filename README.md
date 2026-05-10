@@ -6,8 +6,23 @@
 
 # The human-math-llm-dataset
 
-TODO: add a description of your project; perhaps also instructions how how to
-install and use it, resp. where to find out more
+A high-quality dataset for training and evaluating mathematical large language models (LLMs), focused on abstract algebra problems and rigorous human-style solutions inspired by Hungerford's Abstract Algebra.
+
+The dataset emphasizes:
+
+- Step-by-step proofs
+- Formal mathematical reasoning
+- Algebraic structures and theorem proving
+- Human-readable derivations
+- Fine-tuning data for math-focused LLMs
+
+Designed for research in:
+
+- Mathematical reasoning
+- Proof generation
+- Formalization
+- AI-assisted mathematics
+- Symbolic reasoning systems
 
 # Developers
 
