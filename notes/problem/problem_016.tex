@@ -1,0 +1,21 @@
+\begin{exercise}
+Let $a_1, a_2, \dots$ be a sequence of elements in a semigroup $G$. Then there exists a unique function 
+\[
+\psi : \mathbb{N}^\ast \to G
+\] 
+such that 
+\[
+\psi(1) = a_1, \quad \psi(2) = a_1 a_2, \quad \psi(3) = (a_1 a_2) a_3
+\] 
+and for $n \ge 1$,
+\[
+\psi(n+1) = (\psi(n)) a_{n+1}.
+\]
+
+Note that $\psi(n)$ is precisely the standard $n$-product 
+\[
+\prod_{i=1}^{n} a_i.
+\]
+
+\textit{Hint:} Applying the Recursion Theorem 6.2 of the Introduction with $a = a_1$, $S = G$, and $f_n : G \to G$ given by $x \mapsto x a_{n+2}$ yields a function $\varphi : \mathbb{N} \to G$. Let $\psi = \varphi \circ \theta$, where $\theta : \mathbb{N}^\ast \to \mathbb{N}$ is given by $k \mapsto k-1$.
+\end{exercise}

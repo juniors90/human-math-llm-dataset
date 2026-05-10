@@ -1,0 +1,20 @@
+name: human-algebra-proofs
+description: "A small dataset of human-written abstract algebra proofs."
+version: "0.1.0"
+license: "CC-BY-4.0"
+authors:
+  - name: Juan David Ferreira
+    affiliation: CIEM-UNC
+splits:
+  train: 8
+  validation: 2
+  test: 0
+fields:
+  - id: unique problem identifier
+  - domain: general area
+  - subdomain: more specific field
+  - task_type: type of problem (proof, computation, etc.)
+  - problem_latex: LaTeX source of the problem
+  - solution_latex: LaTeX source of the solution
+  - source: human-written
+  - authors: list of authors

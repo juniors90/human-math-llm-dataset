@@ -1,0 +1,33 @@
+\begin{proof}
+For each $n \in \mathbb{N}$, $f_n$ is well-defined. By the Recursion Theorem 6.2 of the Introduction, there exists a unique function 
+\[
+\varphi : \mathbb{N} \to G
+\] 
+such that 
+\[
+\varphi(0) = a_1, \quad \varphi(n+1) = f_n(\varphi(n)) \quad \text{for all } n \in \mathbb{N}.
+\]
+
+In particular, 
+\[
+\varphi(0) = a_1, \quad \varphi(1) = a_1 a_2, \quad \varphi(2) = (a_1 a_2) a_3,
+\] 
+and for $n \ge 0$, 
+\[
+\varphi(n+1) = (\varphi(n)) a_{n+1}.
+\]
+
+Finally, define 
+\[
+\psi = \varphi \circ \theta
+\] 
+with $\theta(k) = k-1$. Then $\psi$ satisfies 
+\[
+\psi(1) = a_1, \quad \psi(2) = a_1 a_2, \quad \psi(3) = (a_1 a_2) a_3,
+\] 
+and for $n \ge 1$, 
+\[
+\psi(n+1) = (\psi(n)) a_{n+1}.
+\] 
+Uniqueness follows from the Recursion Theorem. 
+\end{proof}
