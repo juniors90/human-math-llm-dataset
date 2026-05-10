@@ -1,9 +1,14 @@
 import json
+import sys
 from pathlib import Path
 
 from pydantic import ValidationError
 
-from .schema import MathProblem
+# Add the project's root directory to the PYTHONPATH
+directory = Path(__file__).resolve()
+sys.path.append(str(directory.parent.parent))
+
+from schema import MathProblem
 
 
 DATASET_FILES = [
