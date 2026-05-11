@@ -33,7 +33,16 @@ $ source venv/bin/activate
 ```
 
 ## usage
+
+```py
+python scripts/build_dataset.py
 ```
+
+```py
+python scripts/validate_dataset.py
+```
+
+```py
 python scripts/build_messages.py data/train.jsonl data/messages_train.jsonl
 python scripts/build_messages.py data/test.jsonl data/messages_test.jsonl
 python scripts/build_messages.py data/validation.jsonl data/messages_validation.jsonl
