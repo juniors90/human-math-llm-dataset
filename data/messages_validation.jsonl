@@ -1,0 +1,1 @@
+{"messages": [{"role": "user", "content": "Domain: mathematics\nSubdomain: algebra\nTask type: proof\n\nIf \\(a^2 = e\\)for all elements \\(a\\) of a group \\(G\\), then \\(G\\) is abelian."}, {"role": "assistant", "content": "This follows from the Steinitz exchange lemma, which implies that all bases have equal cardinality."}]}

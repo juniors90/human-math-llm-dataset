@@ -1,3 +1,35 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# This file is part of the human-math-llm-dataset Project
+#    (https://github.com/juniors90/human-math-llm-dataset/).
+# Copyright (c) 2026, Ferreira Juan David
+# License: MIT
+# Full Text:
+#    https://github.com/juniors90/human-math-llm-dataset/blob/master/LICENSE
+
+# =============================================================================
+# DOCS
+# =============================================================================
+
+"""human-math-llm-dataset
+       
+A high-quality dataset for training and evaluating
+mathematical large language models (LLMs), focused on
+abstract algebra problems and rigorous human-style
+solutions inspired by Hungerford's Abstract Algebra.
+"""
+
+# =============================================================================
+# META
+# =============================================================================
+
+__version__ = "1.0.0"
+
+# =============================================================================
+# IMPORTS
+# =============================================================================
+
 import json
 from pathlib import Path
 
@@ -9,15 +41,16 @@ DATA = ROOT / "data"
 
 PROBLEMS = ROOT / "notes" / "problem"
 
+
 def generar_ids_numericos(problems_path, train_ratio=0.8, valid_ratio=0.1):
     """
-    Genera automáticamente IDs numéricos para train/valid/test
-    según la cantidad de archivos en la carpeta de problemas.
+    Automatically generates numeric IDs for train/valid/test based on the
+    number of files in the problems folder.
 
     Args:
-        problems_path (Path): Carpeta donde están los problemas.
-        train_ratio (float): Porcentaje de archivos para entrenamiento.
-        valid_ratio (float): Porcentaje de archivos para validación.
+        problems_path (Path): Folder where the problems are located.
+        train_ratio (float): Percentage of files for training.
+        valid_ratio (float): Percentage of files for validation.
 
     Returns:
         tuple: (TRAIN_IDS, VALID_IDS, TEST_IDS)
@@ -33,13 +66,16 @@ def generar_ids_numericos(problems_path, train_ratio=0.8, valid_ratio=0.1):
     n_test = total - n_train - n_valid
 
     TRAIN_IDS = set(ids[:n_train])
-    VALID_IDS = set(ids[n_train:n_train+n_valid])
-    TEST_IDS  = set(ids[n_train+n_valid:])
+    VALID_IDS = set(ids[n_train : n_train + n_valid])
+    TEST_IDS = set(ids[n_train + n_valid :])
 
     return TRAIN_IDS, VALID_IDS, TEST_IDS
 
-# Uso
-train_ids, valid_ids, test_ids = generar_ids_numericos(PROBLEMS, train_ratio=0.8, valid_ratio=0.1)
+
+# Use
+train_ids, valid_ids, test_ids = generar_ids_numericos(
+    PROBLEMS, train_ratio=0.8, valid_ratio=0.1
+)
 
 print("TRAIN_IDS =", train_ids)
 print("VALID_IDS =", valid_ids)
@@ -48,16 +84,14 @@ print("TEST_IDS =", test_ids)
 
 TRAIN_IDS = train_ids
 VALID_IDS = valid_ids
-TEST_IDS = test_ids # set()
+TEST_IDS = test_ids  # set()
+
 
 def read_tex(path: Path) -> str:
     return path.read_text(encoding="utf-8").strip()
 
-splits = {
-    "train": [],
-    "validation": [],
-    "test": []
-}
+
+splits = {"train": [], "validation": [], "test": []}
 
 problems = sorted(PROBLEMS.glob("problem_*.tex"))
 
@@ -77,7 +111,7 @@ for prob_path in problems:
         "solution": read_tex(sol_path),
         "source": "human-written",
         "authors": ["Juan David Ferreira"],
-        "license": "CC-BY-4.0"
+        "license": "CC-BY-4.0",
     }
 
     if idx in TRAIN_IDS:
@@ -98,6 +132,6 @@ for split, records in splits.items():
             json.dump(r, f, ensure_ascii=False)
             f.write("\n")
 
-print("Dataset generado:")
+print("Generated dataset:")
 for split, records in splits.items():
-    print(f"  {split}: {len(records)} ejemplos")
+    print(f"  {split}: {len(records)} examples")

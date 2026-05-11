@@ -1,18 +1,42 @@
-#!/usr/bin/env python3
-"""
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# This file is part of the human-math-llm-dataset Project
+#    (https://github.com/juniors90/human-math-llm-dataset/).
+# Copyright (c) 2026, Ferreira Juan David
+# License: MIT
+# Full Text:
+#    https://github.com/juniors90/human-math-llm-dataset/blob/master/LICENSE
+
+# =============================================================================
+# DOCS
+# =============================================================================
+
+"""human-math-llm-dataset
+
+A high-quality dataset for training and evaluating
+mathematical large language models (LLMs), focused on
+abstract algebra problems and rigorous human-style
+solutions inspired by Hungerford's Abstract Algebra.
+
 build_messages.py
 
-Convierte archivos JSONL de problema/solución a JSONL de mensajes de chat.
-Cada línea en input es un JSON:
+Converts JSONL problem/solution files to JSONL chat message files.
+Each line in the input field is JSON:
 {"id": "...", "domain": "...", "problem": "...", "solution": "...", ...}
 
-Cada línea en output será:
+Each line in output will be:
 {"messages": [{"role": "user", "content": "..."}, {"role": "assistant", "content": "..."}]}
 """
+
+# =============================================================================
+# IMPORTS
+# =============================================================================
 
 import json
 import sys
 from pathlib import Path
+
 
 def build_message(problem_json):
     user_content = (
@@ -22,14 +46,15 @@ def build_message(problem_json):
         f"{problem_json.get('problem','')}"
     )
 
-    assistant_content = problem_json.get('solution', '')
+    assistant_content = problem_json.get("solution", "")
 
     return {
         "messages": [
             {"role": "user", "content": user_content},
-            {"role": "assistant", "content": assistant_content}
+            {"role": "assistant", "content": assistant_content},
         ]
     }
+
 
 def main(input_path, output_path):
     input_file = Path(input_path)
@@ -39,8 +64,10 @@ def main(input_path, output_path):
         print(f"Error: {input_file} does not exist.")
         sys.exit(1)
 
-    with open(input_file, "r", encoding="utf-8") as fin, \
-         open(output_file, "w", encoding="utf-8") as fout:
+    with (
+        open(input_file, "r", encoding="utf-8") as fin,
+        open(output_file, "w", encoding="utf-8") as fout,
+    ):
         for line in fin:
             line = line.strip()
             if not line:
@@ -53,10 +80,13 @@ def main(input_path, output_path):
                 print(f"Skipping line due to JSON error: {e}")
                 continue
 
-    print(f"Mensajes generados en {output_file}")
+    print(f"Messages generated in {output_file}")
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Uso: python build_messages.py data/train.jsonl data/messages_train.jsonl")
+        print(
+            "Use: python build_messages.py data/train.jsonl data/messages_train.jsonl"
+        )
         sys.exit(1)
     main(sys.argv[1], sys.argv[2])

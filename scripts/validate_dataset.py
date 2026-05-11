@@ -1,3 +1,27 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# This file is part of the human-math-llm-dataset Project
+#    (https://github.com/juniors90/human-math-llm-dataset/).
+# Copyright (c) 2026, Ferreira Juan David
+# License: MIT
+# Full Text:
+#    https://github.com/juniors90/human-math-llm-dataset/blob/master/LICENSE
+
+# =============================================================================
+# DOCS
+# =============================================================================
+
+"""human-math-llm-dataset
+
+A high-quality dataset for training and evaluating
+mathematical large language models (LLMs), focused on
+abstract algebra problems and rigorous human-style
+solutions inspired by Hungerford's Abstract Algebra.
+
+validate_dataset.py
+"""
+
 import json
 import sys
 from pathlib import Path
@@ -9,7 +33,6 @@ directory = Path(__file__).resolve()
 sys.path.append(str(directory.parent.parent))
 
 from schema import MathProblem
-
 
 DATASET_FILES = [
     Path("data/train.jsonl"),
@@ -39,9 +62,7 @@ def validate_file(filepath: Path):
 
                 # duplicate id check
                 if problem.id in ids:
-                    raise ValueError(
-                        f"Duplicate id detected: {problem.id}"
-                    )
+                    raise ValueError(f"Duplicate id detected: {problem.id}")
 
                 ids.add(problem.id)
 

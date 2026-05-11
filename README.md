@@ -32,6 +32,13 @@ $ source venv/bin/activate
 (venv) $ pip install -r requirements/dev.txt
 ```
 
+## usage
+``
+python scripts/build_messages.py data/train.jsonl data/messages_train.jsonl
+python scripts/build_messages.py data/test.jsonl data/messages_test.jsonl
+python scripts/build_messages.py data/validation.jsonl data/messages_validation.jsonl
+``
+
 ## Contact
 
 TODO: add info on how to contact you and/or how to report issues with your
